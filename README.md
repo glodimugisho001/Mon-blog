@@ -34,3 +34,19 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+
+Jour 1 — Routes simples et dynamiques
+
+Objectif : maîtriser params et searchParams.
+Exercice : Mini-blog
+
+Crée /blog → liste de 3 articles avec liens vers /blog/[slug]
+
+Chaque article : /blog/react-hooks, /blog/nextjs-routing, /blog/suspense
+
+Dans [slug]/page.tsx : affiche le slug depuis params
+
+Ajoute un ?lang=fr et affiche-le avec searchParams
+
+Bonus : Barre de navigation “home / blog” avec surbrillance du pathname
