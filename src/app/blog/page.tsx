@@ -1,5 +1,5 @@
 import SearchBar from "../../components/SearchBar";
-import Posts from "../../components/Posts";
+import PostsWrapper from "@/components/PostsWrapper";
 
 export default function BlogHome() {
   return (
@@ -15,7 +15,7 @@ export default function BlogHome() {
       <SearchBar />
       <section className="py-12">
         <h2 className="text-4xl font-bold text-center mb-8">Mes articles</h2>
-        <Posts />
+        <PostsWrapper />
       </section>
     </div>
   );

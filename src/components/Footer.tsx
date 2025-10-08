@@ -1,9 +1,9 @@
 import Link from 'next/link'
 import React from 'react'
 import { Github, Linkedin, Twitter } from 'lucide-react'
-type Props = {}
 
-export default function Footer({}: Props) {
+
+export default function Footer() {
   return (
     <>
       <footer className="border-t mt-12 py-8">

@@ -3,9 +3,7 @@ import Hero from "../components/Hero";
 import LastPosts from "../components/LastPosts";
 import WhyBlog from "../components/WyBlog";
 
-type Props = {};
-
-export default function page({}: Props) {
+export default function page() {
   return (
     <div className="">
       <Hero />

@@ -3,13 +3,11 @@ import { Menu } from 'lucide-react'
 import Link from 'next/link'
 import React, { useState } from 'react'
 
-type Props = {}
-
 const links= [
   {url: "/", label: "Home"},
   {url: "/blog", label: "Blog"},
 ]
-export default function Navbar({}: Props) {
+export default function Navbar() {
    const [isOpen, setIsOpen] = useState(false)
   return (
     <header className="bg-white shadow-md sticky top-0 z-50">

@@ -12,7 +12,6 @@ import {
   ItemContent,
   ItemDescription,
   ItemFooter,
-  ItemGroup,
   ItemHeader,
   ItemTitle,
 } from "./ui/item";

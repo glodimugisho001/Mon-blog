@@ -24,17 +24,17 @@ export default async function page({params}: Props) {
           </Link>
         </div>
         <h1 className="text-4xl font-bold text-neutral-900 mb-4">
-          {postFound?.title}
+          {postFound?.title ?? 'Aucun titre trouvé'}
         </h1>
         <div className="flex items-center gap-4 text-neutral-500 text-sm">
-          <span>{postFound?.date}</span>
+          <span>{postFound?.date ?? 'Aucune date trouvée'}</span>
           <Badge variant={'secondary'}>{postFound?.tag}</Badge>
         </div>
         <Image
-          src={postFound?.image!}
+          src={postFound?.image ?? "/next.svg"}
           width={250}
           height={150}
-          alt={postFound?.title!}
+          alt={postFound?.title ?? 'Aucun titre trouvé'}
           className="W-full rounded-md my-6 mx-auto"
         />
         <article className="prose prose-lg max-w-3xl mx-auto text-neutral-800 text-justify md:text-[18px]">

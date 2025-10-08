@@ -8,9 +8,7 @@ import { usePathname, useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import clsx from "clsx";
 
-type Props = {};
-
-export default function SearchBar({}: Props) {
+export default function SearchBar() {
   const [value, setValue] = useState("");
   const pathname = usePathname()
   const router = useRouter()
