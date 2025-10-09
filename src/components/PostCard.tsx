@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import clsx from "clsx";
 import { Post } from "../app/types/blogType";
 import { useRouter } from "next/navigation";
-import { Button } from "./ui/button";
+import { Button, buttonVariants } from "./ui/button";
 import Image from "next/image";
 
 import {
@@ -55,31 +55,22 @@ export default function PostCard({ post }: Props) {
           <ItemDescription>{post.excerpt}</ItemDescription>
         </ItemContent>
         <ItemFooter>
-          <Link href={`/blog/${post.slug}`} onClick={() => handleNavigate(post.slug)}>
-            <Button
-              variant={"outline"}
-              // onClick={() => handleNavigate(post.slug)}
-              className={clsx(
-                "px-4 py-2 rounded-lg border border-gray-300 hover:bg-gray-100 transition",
-                {
-                  "opacity-50 cursor-not-allowed":
-                   loadingSlug === post.slug,
-                }
-              )}
-              disabled={loadingSlug === post.slug}
-            >
-              {loadingSlug === post.slug ? (
-                <p className="flex gap-2 items-center">
-                  <Spinner />
-                  <span>Loading ...</span>
-                </p>
-              ) : (
-                <p className="flex gap-2 items-center">
-                  <span>Lire plus </span>
-                  <ArrowRight />
-                </p>
-              )}
-            </Button>
+          <Link
+            href={`/blog/${post.slug}`}
+            onClick={() => handleNavigate(post.slug)}
+            className={buttonVariants({ size: "lg", variant: "outline" })}
+          >
+            {loadingSlug === post.slug ? (
+              <p className="flex gap-2 items-center">
+                <Spinner />
+                <span>Loading ...</span>
+              </p>
+            ) : (
+              <p className="flex gap-2 items-center">
+                <span>Lire plus </span>
+                <ArrowRight />
+              </p>
+            )}
           </Link>
         </ItemFooter>
       </Item>

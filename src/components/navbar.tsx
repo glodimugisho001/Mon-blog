@@ -2,6 +2,8 @@
 import { Menu } from 'lucide-react'
 import Link from 'next/link'
 import React, { useState } from 'react'
+import { buttonVariants } from './ui/button'
+import clsx from 'clsx'
 
 const links= [
   {url: "/", label: "Home"},
@@ -23,7 +25,7 @@ export default function Navbar() {
               <li key={link.url}>
                 <Link
                   href={link.url}
-                  className="hover:text-blue-600 transition-colors text-2xl"
+                  className={clsx(buttonVariants({ variant: "link" }), "hover:text-blue-600 transition-colors text-[24px]") }
                 >
                   {link.label}
                 </Link>
@@ -49,7 +51,7 @@ export default function Navbar() {
                   <Link
                     href={link.url}
                     onClick={() => setIsOpen(false)}
-                    className="text-gray-700 hover:text-blue-600 font-medium"
+                    className={clsx(buttonVariants({ variant: "link" }), "hover:text-blue-600 transition-colors text-[18px]")}
                   >
                     {link.label}
                   </Link>
