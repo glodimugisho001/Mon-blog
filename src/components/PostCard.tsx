@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useTransition, useState } from "react";
+import React, { useState } from "react";
 import clsx from "clsx";
 import { Post } from "../app/types/blogType";
 import { useRouter } from "next/navigation";
@@ -18,6 +18,7 @@ import {
 
 import { Spinner } from "./ui/spinner";
 import { ArrowRight } from "lucide-react";
+import Link from "next/link";
 
 type Props = {
   post: Post;
@@ -25,13 +26,16 @@ type Props = {
 
 export default function PostCard({ post }: Props) {
   const router = useRouter();
-  const [isPending, startTransition] = useTransition();
+  // const [isPending, startTransition] = useTransition();
   const [loadingSlug, setLoadingSlug] = useState("");
-  const handleNavigate = (slug: string) => {
+  // const handleNavigate = (slug: string) => {
+  //   setLoadingSlug(slug);
+  //   startTransition(() => {
+  //     router.push(`/blog/${slug}`);
+  //   });
+  // };
+    const handleNavigate = (slug: string) => {
     setLoadingSlug(slug);
-    startTransition(() => {
-      router.push(`/blog/${slug}`);
-    });
   };
 
   return (
@@ -51,30 +55,32 @@ export default function PostCard({ post }: Props) {
           <ItemDescription>{post.excerpt}</ItemDescription>
         </ItemContent>
         <ItemFooter>
-          <Button
-            variant={"outline"}
-            onClick={() => handleNavigate(post.slug)}
-            className={clsx(
-              "px-4 py-2 rounded-lg border border-gray-300 hover:bg-gray-100 transition",
-              {
-                "opacity-50 cursor-not-allowed":
-                  isPending && loadingSlug === post.slug,
-              }
-            )}
-            disabled={isPending && loadingSlug === post.slug}
-          >
-            {isPending && loadingSlug === post.slug ? (
-              <p className="flex gap-2 items-center">
-                <Spinner />
-                <span>Loading ...</span>
-              </p>
-            ) : (
-              <p className="flex gap-2 items-center">
-                <span>Lire plus </span>
-                <ArrowRight />
-              </p>
-            )}
-          </Button>
+          <Link href={`/blog/${post.slug}`} onClick={() => handleNavigate(post.slug)}>
+            <Button
+              variant={"outline"}
+              // onClick={() => handleNavigate(post.slug)}
+              className={clsx(
+                "px-4 py-2 rounded-lg border border-gray-300 hover:bg-gray-100 transition",
+                {
+                  "opacity-50 cursor-not-allowed":
+                   loadingSlug === post.slug,
+                }
+              )}
+              disabled={loadingSlug === post.slug}
+            >
+              {loadingSlug === post.slug ? (
+                <p className="flex gap-2 items-center">
+                  <Spinner />
+                  <span>Loading ...</span>
+                </p>
+              ) : (
+                <p className="flex gap-2 items-center">
+                  <span>Lire plus </span>
+                  <ArrowRight />
+                </p>
+              )}
+            </Button>
+          </Link>
         </ItemFooter>
       </Item>
     </div>
