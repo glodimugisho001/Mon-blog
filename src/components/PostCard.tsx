@@ -1,12 +1,10 @@
 "use client";
 
 import React, { useState } from "react";
-import clsx from "clsx";
 import { Post } from "../app/types/blogType";
 import { useRouter } from "next/navigation";
-import { Button, buttonVariants } from "./ui/button";
+import { buttonVariants } from "./ui/button";
 import Image from "next/image";
-
 import {
   Item,
   ItemContent,
@@ -15,7 +13,6 @@ import {
   ItemHeader,
   ItemTitle,
 } from "./ui/item";
-
 import { Spinner } from "./ui/spinner";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";

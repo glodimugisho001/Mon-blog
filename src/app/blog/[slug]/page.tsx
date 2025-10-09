@@ -3,8 +3,9 @@ import React from 'react'
 import Image from 'next/image'
 import { Badge } from '@/components/ui/badge'
 import Link from 'next/link'
+import { buttonVariants } from '@/components/ui/button'
 import { ArrowLeft } from 'lucide-react'
-
+import clsx from "clsx";
 type Props = {
   params: Promise<{slug: string}>
 }
@@ -18,7 +19,8 @@ export default async function page({params}: Props) {
         <div className=" mt-6 mb-4">
           <Link
             href="/blog"
-            className="text-blue-600 hover:underline font-medium flex gap-2 items-center text-[24px]"
+            className={clsx(buttonVariants({ variant: "link" }), "hover:text-blue-600 transition-colors text-[24px] font-medium flex gap-2 items-center") }
+
           >
             <ArrowLeft size={24}/><span >Retour</span>
           </Link>
