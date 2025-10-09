@@ -6,6 +6,7 @@ import Link from 'next/link'
 import { buttonVariants } from '@/components/ui/button'
 import { ArrowLeft } from 'lucide-react'
 import clsx from "clsx";
+import { notFound } from 'next/navigation'
 type Props = {
   params: Promise<{slug: string}>
 }
@@ -13,6 +14,9 @@ type Props = {
 export default async function page({params}: Props) {
   const idParams = await params
   const postFound = posts.find(post => post.slug === idParams.slug)
+  if(!postFound){
+    notFound()
+  }
   return (
     <div className="">
       <section className="max-w-3xl mx-auto px-4">
