@@ -22,7 +22,7 @@ export default function Posts() {
         </div>
       ) : (
         fitleredPosts.map((post) => (
-            <PostCard post={post} key={post.slug} />
+          <PostCard post={post} key={post.slug} />
         ))
       )}
     </div>

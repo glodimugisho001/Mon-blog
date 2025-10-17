@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { ReactEventHandler, useState } from "react";
 import { Input } from "./ui/input";
 import React from "react";
 import { Search, X } from "lucide-react";
@@ -14,7 +14,8 @@ export default function SearchBar() {
   const router = useRouter()
 
   // Fonction de recherche: création du paramettre de recherche et rearangement de l'url
-  const handleSearch = () => {
+  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setValue(e.currentTarget.value)
     const params = new URLSearchParams()
     if(value){
       params.set('title', value)
@@ -35,14 +36,16 @@ export default function SearchBar() {
         <Input
           type="search"
           placeholder="Rechercher un article..."
-          onChange={(e) => setValue(e.target.value)}
+          value={value}
+          onChange={handleSearch}
           className="pl-9 "
         />
       </div>
       <div className="flex gap-1">
-        <Button 
+        <Button
           className={clsx("w-1/2", !value && "w-full")}
-          onClick={handleSearch}>Rechercher</Button>
+          // onClick={handleSearch}>Rechercher</Button>
+          >Rechercher</Button>
         <AnimatePresence >
           {value && (
             <motion.div

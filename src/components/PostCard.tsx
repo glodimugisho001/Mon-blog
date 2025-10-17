@@ -41,8 +41,8 @@ export default function PostCard({ post }: Props) {
         <ItemHeader>
           <Image
             src={post.image}
-            width={800}
-            height={500}
+            width={600}
+            height={400}
             alt={post.title}
             className="W-full rounded-sm"
           />
