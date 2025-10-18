@@ -13,7 +13,7 @@ export default function NotFoundPAge() {
             <CardTitle className='text-4xl text-red-500'>404</CardTitle>
           </CardHeader>
           <CardContent>
-            <CardDescription className='text-center font-bold text-2xl'>La page que vous recherchez n'existe pas</CardDescription>
+            <CardDescription className='text-center font-bold text-2xl'>La page que vous recherchez n&apos;existe pas</CardDescription>
           </CardContent>
           <CardFooter className='flex justify-center'>
             <Link href="/" className={buttonVariants({ size: "lg", variant: "outline" })}>Accueil</Link>

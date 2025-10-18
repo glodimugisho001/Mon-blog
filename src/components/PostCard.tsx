@@ -22,7 +22,7 @@ type Props = {
 };
 
 export default function PostCard({ post }: Props) {
-  const router = useRouter();
+  // const router = useRouter();
   // const [isPending, startTransition] = useTransition();
   const [loadingSlug, setLoadingSlug] = useState("");
   // const handleNavigate = (slug: string) => {

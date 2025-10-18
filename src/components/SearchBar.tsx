@@ -1,5 +1,5 @@
 "use client";
-import { ReactEventHandler, useState } from "react";
+import { useState } from "react";
 import { Input } from "./ui/input";
 import React from "react";
 import { Search, X } from "lucide-react";
