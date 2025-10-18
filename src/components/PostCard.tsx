@@ -2,7 +2,6 @@
 
 import React, { useState } from "react";
 import { Post } from "../app/types/blogType";
-import { useRouter } from "next/navigation";
 import { buttonVariants } from "./ui/button";
 import Image from "next/image";
 import {
