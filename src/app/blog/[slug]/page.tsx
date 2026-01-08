@@ -17,11 +17,11 @@ export default async function page({ params }: Props) {
   const postFound = await prisma.post.findUnique({
     where: {
       slug: idParams.slug,
-    }
-  })
+    },
+  });
 
-  if(!postFound){
-    notFound()
+  if (!postFound) {
+    notFound();
   }
 
   return (
@@ -43,9 +43,17 @@ export default async function page({ params }: Props) {
           {postFound?.title ?? "Aucun titre trouvé"}
         </h1>
         <div className="flex items-center gap-4 text-neutral-500 text-sm">
-          <span>{postFound?.createdAt.toDateString() ?? "Aucune date trouvée"}</span>
+          <span className="text-neutral-500 font-medium text-[14px] flex items-center gap-2">
+            {postFound?.createdAt.toLocaleDateString("fr-Fr", {
+              day: "numeric",
+              month: "long",
+              year: "numeric",
+            }) ?? "Aucune date trouvée"}
+          </span>
           {postFound?.tags.map((tag) => (
-            <Badge key={tag} variant={"secondary"}>{tag}</Badge>
+            <Badge key={tag} variant={"outline"}>
+              {tag}
+            </Badge>
           ))}
         </div>
         <Image
