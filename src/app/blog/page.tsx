@@ -1,3 +1,4 @@
+import Loader from "@/components/Loader";
 import SearchBar from "../../components/SearchBar";
 import Posts from "@/components/Posts";
 import { prisma } from "@/lib/prisma";
@@ -17,11 +18,7 @@ export default async function BlogHome() {
       <SearchBar />
       <section className="py-12">
         <h2 className="text-4xl font-bold text-center mb-8">Mes articles</h2>
-        <Suspense
-          fallback={
-            <div className="text-center">Chargement des articles...</div>
-          }
-        >
+        <Suspense fallback={<Loader />}>
           <Posts posts={posts} />
         </Suspense>
       </section>
