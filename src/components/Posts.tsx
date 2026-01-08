@@ -1,13 +1,18 @@
-"use client"
+"use client";
 
-import PostCard from "./PostCard";
-import { Post } from "../app/types/blogType";
-import { useSearchParams } from "next/navigation";
-import { Search } from "lucide-react";
-export default function Posts({posts}: {posts: Post[]}) {
+import PostCard from "./PostCard"
+import { Post } from "../app/types/blogType"
+import { useSearchParams } from "next/navigation"
+import { Search } from "lucide-react"
+
+
+export default function Posts({ posts }: { posts: Post[] }) {
+
   const params = useSearchParams()
-  const paramsFound = params.get("title")?.toLowerCase() || ""
-  const fitleredPosts = posts.filter(posts => posts.title.toLowerCase().includes(paramsFound))
+  const paramsFound = params.get("title")?.toLowerCase() || "";
+  const fitleredPosts = posts.filter((post) =>
+    post.title.toLowerCase().includes(paramsFound)
+  );
 
   return (
     <div className="grid grid-cols-[repeat(auto-fit,minmax(250px,1fr))] gap-4 mx-auto max-w-[1200px] md:px-0">
@@ -20,9 +25,7 @@ export default function Posts({posts}: {posts: Post[]}) {
           </p>
         </div>
       ) : (
-        fitleredPosts.map((post) => (
-          <PostCard post={post} key={post.slug} />
-        ))
+        fitleredPosts.map((post) => <PostCard post={post} key={post.slug} />)
       )}
     </div>
   );
