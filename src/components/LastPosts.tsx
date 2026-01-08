@@ -1,6 +1,7 @@
 import React from "react";
-import { posts } from "../app/data/blog";
+;
 import PostCard from "./PostCard";
+import { posts } from "@/app/data/blog";
 
 export default function LastPosts() {
   const lastPosts = posts.slice(0, 4);

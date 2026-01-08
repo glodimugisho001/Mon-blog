@@ -1,4 +1,5 @@
-import { Post } from "../types/blogType"
+import { Post } from "../types/blogType";
+
 
 
 export const posts: Post[] = [
