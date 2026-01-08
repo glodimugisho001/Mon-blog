@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import { useState } from "react";
 import { Post } from "../app/types/blogType";
 import { buttonVariants } from "./ui/button";
 import Image from "next/image";
@@ -38,13 +38,15 @@ export default function PostCard({ post }: Props) {
     <div className="flex w-full max-w-xl flex-col gap-6">
       <Item variant="outline">
         <ItemHeader>
-          <Image
-            src={post.image}
-            width={600}
-            height={400}
-            alt={post.title}
-            className="W-full rounded-sm"
-          />
+          {post.image && (
+            <Image
+              src={post.image}
+              width={600}
+              height={400}
+              alt={post.title}
+              className="W-full rounded-sm"
+            />
+          )}
         </ItemHeader>
         <ItemContent>
           <ItemTitle>{post.title}</ItemTitle>

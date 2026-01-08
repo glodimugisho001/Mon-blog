@@ -1,7 +1,5 @@
 import { Post } from "../types/blogType";
 
-
-
 export const posts: Post[] = [
   {
     slug: "thinking-in-nextjs",
@@ -12,8 +10,7 @@ export const posts: Post[] = [
       Next.js t’oblige à raisonner en termes de *responsabilité côté serveur et côté client*.
       Ce n’est pas seulement un outil, c’est une philosophie : comprendre où ton code s’exécute, comment optimiser les temps de rendu, et comment organiser ton app pour qu’elle respire la clarté.
       Quand tu maîtrises Next.js, tu ne construis pas juste des pages : tu conçois des expériences web complètes, performantes et maintenables.`,
-    date: "2025-10-02",
-    tag: "Next.js",
+    tags: ["Next.js"],
     image: "/next-js-vs-react-developer-experience.png",
   },
   {
@@ -25,8 +22,7 @@ export const posts: Post[] = [
       Les hooks ne sont pas juste une nouveauté : c’est une manière plus naturelle d’écrire du React.
       Ils t’invitent à découper ton code en morceaux logiques et réutilisables. Fini les classes interminables, bienvenue aux fonctions élégantes et composables.
       Maîtriser les hooks, c’est comme apprendre à respirer dans l’écosystème React.`,
-    date: "2025-09-28",
-    tag: "React",
+    tags: ["React"],
     image: "/next-js-vs-react-developer-experience.png",
   },
   {
@@ -38,8 +34,7 @@ export const posts: Post[] = [
       Ce hook est un bijou. Il te permet d’effectuer des mises à jour sans bloquer ton interface.
       Tu peux naviguer, filtrer, ou charger des données tout en gardant ton UI réactive.
       C’est littéralement le secret derrière les interfaces “smooth” que tu vois sur les apps pro.`,
-    date: "2025-09-20",
-    tag: "React",
+    tags: ["React"],
     image: "/next-js-vs-react-developer-experience.png",
   },
   {
@@ -52,8 +47,7 @@ export const posts: Post[] = [
       C’est savoir qu’un pixel mal placé peut casser une expérience.  
       C’est sentir la cohérence entre ton code et l’émotion de l’utilisateur.
       Bref : c’est être à la frontière entre l’humain et la machine.`,
-    date: "2025-09-10",
-    tag: "Philosophie",
+    tags: ["Philosophie"],
     image: "/next-js-vs-react-developer-experience.png",
   },
   {
@@ -66,8 +60,7 @@ export const posts: Post[] = [
       Tu veux tester une interface de blog, un tableau de bord ou une app e-commerce ? Mocke tes données.
       Avec un simple tableau d’objets et un peu de logique, tu peux tout simuler : filtrage, tri, recherche, pagination.
       L’important, c’est de pratiquer la structure. Le backend viendra plus tard.`,
-    date: "2025-09-03",
-    tag: "Frontend",
+    tags: ["Frontend"],
     image: "/next-js-vs-react-developer-experience.png",
   },
   {
@@ -79,8 +72,7 @@ export const posts: Post[] = [
       Beaucoup de développeurs frontend ignorent à quel point leur travail prépare le terrain du machine learning.
       Quand tu manipules des APIs, que tu optimises des flux de données ou que tu structures des composants, tu penses déjà “data”.
       Le futur appartiendra à ceux qui sauront fusionner ces deux mondes : la beauté du frontend et la puissance de l’intelligence artificielle.`,
-    date: "2025-08-25",
-    tag: "Machine Learning",
+    tags: ["Machine Learning"],
     image: "/next-js-vs-react-developer-experience.png",
-  }
+  },
 ];

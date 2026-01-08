@@ -3,7 +3,7 @@ import Hero from "../components/Hero";
 import LastPosts from "../components/LastPosts";
 import WhyBlog from "../components/WyBlog";
 
-export default function page() {
+export default async function page() {
   return (
     <div className="">
       <Hero />

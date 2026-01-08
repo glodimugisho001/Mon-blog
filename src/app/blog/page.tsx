@@ -1,7 +1,9 @@
 import SearchBar from "../../components/SearchBar";
-import PostsWrapper from "@/components/PostsWrapper";
+import Posts from "@/components/Posts";
+import { prisma } from "@/lib/prisma";
 
-export default function BlogHome() {
+export default async function BlogHome() {
+  const posts = await prisma.post.findMany();
   return (
     <div className="">
       <section className="text-center mt-6">
@@ -15,7 +17,7 @@ export default function BlogHome() {
       <SearchBar />
       <section className="py-12">
         <h2 className="text-4xl font-bold text-center mb-8">Mes articles</h2>
-        <PostsWrapper />
+        <Posts posts={posts} />
       </section>
     </div>
   );
