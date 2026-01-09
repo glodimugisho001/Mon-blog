@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Post } from "../app/types/blogType";
+import { Post } from "../types/blogType";
 import { buttonVariants } from "./ui/button";
 import Image from "next/image";
 import {
@@ -30,7 +30,7 @@ export default function PostCard({ post }: Props) {
   //     router.push(`/blog/${slug}`);
   //   });
   // };
-    const handleNavigate = (slug: string) => {
+  const handleNavigate = (slug: string) => {
     setLoadingSlug(slug);
   };
 

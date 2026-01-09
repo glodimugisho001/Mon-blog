@@ -1,14 +1,12 @@
 "use client";
 
-import PostCard from "./PostCard"
-import { Post } from "../app/types/blogType"
-import { useSearchParams } from "next/navigation"
-import { Search } from "lucide-react"
-
+import PostCard from "./PostCard";
+import { Post } from "../types/blogType";
+import { useSearchParams } from "next/navigation";
+import { Search } from "lucide-react";
 
 export default function Posts({ posts }: { posts: Post[] }) {
-
-  const params = useSearchParams()
+  const params = useSearchParams();
   const paramsFound = params.get("title")?.toLowerCase() || "";
   const fitleredPosts = posts.filter((post) =>
     post.title.toLowerCase().includes(paramsFound)
