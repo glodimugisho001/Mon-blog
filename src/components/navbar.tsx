@@ -1,13 +1,14 @@
 'use client'
 import { Menu } from 'lucide-react'
 import Link from 'next/link'
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { buttonVariants } from './ui/button'
 import clsx from 'clsx'
 
 const links= [
   {url: "/", label: "Home"},
   {url: "/blog", label: "Blog"},
+  {url: "/auth/signup", label: "Sign up"},
 ]
 export default function Navbar() {
    const [isOpen, setIsOpen] = useState(false)
@@ -33,6 +34,7 @@ export default function Navbar() {
             ))}
           </ul>
 
+          {/* Mobile Menu */}
           <div className="md:hidden">
             <button
               onClick={() => setIsOpen(!isOpen)}
