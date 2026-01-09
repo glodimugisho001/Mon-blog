@@ -1,3 +1,5 @@
+"use client";
+
 import { Button } from "@/components/ui/button";
 import {
   Field,
@@ -8,14 +10,36 @@ import {
   FieldSet,
 } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
+import { useForm, SubmitHandler, Controller } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
 
+const schema = z.object({
+  email: z.string().email("Email invalide"),
+  password: z
+    .string()
+    .min(6, "Le mot de passe doit contenir au moins 6 caractères"),
+});
 type Props = {};
 
 export default function SignUpForm({}: Props) {
+  const form = useForm<z.infer<typeof schema>>({
+    resolver: zodResolver(schema),
+    defaultValues: {
+      email: "",
+      password: "",
+    },
+  });
+  const onSubmit: SubmitHandler<z.infer<typeof schema>> = (data) => {
+    console.log(data);
+  };
   return (
     <div className="flex justify-center items-center h-screen">
       <div className="w-full max-w-sm">
-        <form className="p-6 border border-gray-300 rounded-lg">
+        <form
+          onSubmit={form.handleSubmit(onSubmit)}
+          className="p-6 border border-gray-300 rounded-lg"
+        >
           <FieldGroup>
             <FieldSet>
               <FieldLegend>Sign up to your account</FieldLegend>
@@ -25,16 +49,28 @@ export default function SignUpForm({}: Props) {
               <FieldGroup>
                 <Field>
                   <FieldLabel htmlFor="email">Email</FieldLabel>
-                  <Input
-                    id="email"
-                    type="email"
-                    placeholder="m@example.com"
-                    required
+                  <Controller
+                    name="email"
+                    control={form.control}
+                    render={({ field }) => (
+                      <Input
+                        id="email"
+                        type="email"
+                        placeholder="m@example.com"
+                        {...field}
+                      />
+                    )}
                   />
                 </Field>
                 <Field>
                   <FieldLabel htmlFor="password">Password</FieldLabel>
-                  <Input id="password" type="password" required />
+                  <Controller
+                    name="password"
+                    control={form.control}
+                    render={({ field }) => (
+                      <Input id="password" type="password" {...field} />
+                    )}
+                  />
                   <FieldDescription>
                     <a
                       href="#"
