@@ -62,7 +62,7 @@ export default function SignUpForm({}: Props) {
           router.push("/auth");
         },
         onError: (error) => {
-          console.log(error);
+          console.log(error); 
           toast.error("Sign up failed:", {
             id: "signing-up",
           });
