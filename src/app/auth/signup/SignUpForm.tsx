@@ -20,7 +20,7 @@ import { toast } from "sonner";
 
 const schema = z.object({
   name: z.string().min(2, "Le nom doit contenir au moins 2 caractères"),
-  email: z.email("Email invalide"),
+  email: z.string().email("Email invalide"),
   password: z
     .string()
     .min(6, "Le mot de passe doit contenir au moins 6 caractères"),
@@ -59,10 +59,10 @@ export default function SignUpForm({}: Props) {
           toast.success("Sign up successful", {
             id: "signing-up",
           });
-          router.push("/auth")
+          router.push("/auth");
         },
         onError: (error) => {
-          console.log(error);
+          console.log(error); 
           toast.error("Sign up failed:", {
             id: "signing-up",
           });
