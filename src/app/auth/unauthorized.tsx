@@ -8,7 +8,7 @@ export default function UnauthorizedPage() {
       <AlertTitle>Unauthorized</AlertTitle>
       <AlertDescription>You are not authorized to access this page? you need to login first</AlertDescription>
       <Button asChild>
-        <Link href="/auth/login">Login</Link>
+        <Link href="/auth/signup">Sign Up</Link>
       </Button>
     </Alert>
   )

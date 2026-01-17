@@ -9,7 +9,7 @@ const AuthPage = async () => {
     return <UnauthorizedPage />
   }
   return (
-    <Card className="">
+    <Card className="w-full max-w-sm self-start mt-10">
       <CardHeader>
         <CardTitle>User Profile</CardTitle>
       </CardHeader>

@@ -1,32 +1,41 @@
-'use client'
-import { Menu } from 'lucide-react'
-import Link from 'next/link'
-import { useState } from 'react'
-import { buttonVariants } from './ui/button'
-import clsx from 'clsx'
+import Link from "next/link";
+import { Suspense } from "react";
+import { Button, buttonVariants } from "./ui/button";
+import clsx from "clsx";
+import { getUser } from "@/lib/auth-server";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "./ui/dropdown-menu";
+import { Avatar, AvatarFallback } from "./ui/avatar";
+import MobileMenu from "./MobileMenu";
 
-const links= [
-  {url: "/", label: "Home"},
-  {url: "/blog", label: "Blog"},
-  {url: "/auth/signup", label: "Sign up"},
-]
+const links = [
+  { url: "/", label: "Home" },
+  { url: "/blog", label: "Blog" },
+];
 export default function Navbar() {
-   const [isOpen, setIsOpen] = useState(false)
+  //  const [isOpen, setIsOpen] = useState(false)
   return (
     <header className="bg-white shadow-md sticky top-0 z-50">
       <div className="container mx-auto flex justify-between items-center py-4 px-6 md:px-12 border-b-[2px] border-gray-200 md:border-none  ">
-
         <h1 className="text-2xl md:text-3xl font-bold text-blue-600">
           <Link href="/">Glodi.dev</Link>
         </h1>
 
-        <nav>
+        <nav className="flex items-center gap-6">
           <ul className="hidden md:flex gap-6 text-gray-700 font-medium">
             {links.map((link) => (
               <li key={link.url}>
                 <Link
                   href={link.url}
-                  className={clsx(buttonVariants({ variant: "link" }), "hover:text-blue-600 transition-colors text-[24px]") }
+                  className={clsx(
+                    buttonVariants({ variant: "link" }),
+                    "hover:text-blue-600 transition-colors text-[24px]",
+                  )}
                 >
                   {link.label}
                 </Link>
@@ -34,36 +43,58 @@ export default function Navbar() {
             ))}
           </ul>
 
-          {/* Mobile Menu */}
-          <div className="md:hidden">
-            <button
-              onClick={() => setIsOpen(!isOpen)}
-              className="focus:outline-none flex flex-col justify-center gap-1 w-6 h-6"
-            >
-              <Menu size={32}/>
-            </button>
+          <Suspense fallback={<SkeletonButton />}>
+            <AuthButton />
+          </Suspense>
 
-            <ul
-              className={`absolute top-full left-0 w-full bg-white shadow-md flex flex-col items-center gap-4 py-4 transition-all duration-300 ${
-                isOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0 overflow-hidden"
-              }`}
-            >
-              {links.map((link) => (
-                <li key={link.url}>
-                  <Link
-                    href={link.url}
-                    onClick={() => setIsOpen(false)}
-                    className={clsx(buttonVariants({ variant: "link" }), "hover:text-blue-600 transition-colors text-[18px]")}
-                  >
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
+          {/* Mobile Menu */}
+          <MobileMenu links={links} />
         </nav>
       </div>
     </header>
-
-  )
+  );
 }
+
+export const AuthButton = async () => {
+  const user = await getUser();
+
+  if (!user) {
+    return (
+      <Link
+        href="/auth/signup"
+        className={buttonVariants({ variant: "outline", size: "sm" })}
+      >
+        Sign Up
+      </Link>
+    );
+  }
+  return (
+    <DropdownMenu>
+      <DropdownMenuTrigger asChild>
+        <Button variant="outline" size="sm">
+          <Avatar>
+            <AvatarFallback>{user.email[0].toUpperCase()}</AvatarFallback>
+          </Avatar>
+          <p className="text-sm">{user.name}</p>
+        </Button>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent>
+        <DropdownMenuLabel>My Account</DropdownMenuLabel>
+        <DropdownMenuSeparator />
+        <DropdownMenuLabel>Settings</DropdownMenuLabel>
+        <DropdownMenuSeparator />
+        <DropdownMenuLabel>Logout</DropdownMenuLabel>
+      </DropdownMenuContent>
+    </DropdownMenu>
+  );
+};
+
+const SkeletonButton = () => {
+  return (
+    <Button variant="outline" size="sm">
+      <Avatar>
+        <AvatarFallback>S</AvatarFallback>
+      </Avatar>
+    </Button>
+  );
+};
