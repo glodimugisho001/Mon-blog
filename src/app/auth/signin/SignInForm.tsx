@@ -3,7 +3,6 @@
 import { Button } from "@/components/ui/button";
 import {
   Field,
-  FieldDescription,
   FieldError,
   FieldGroup,
   FieldLabel,
@@ -14,14 +13,12 @@ import { Input } from "@/components/ui/input";
 import { useForm, SubmitHandler, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { signUp } from "@/lib/auth-client";
+import { signIn } from "@/lib/auth-client";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import Link from "next/link";
 
-
 const schema = z.object({
-  name: z.string().min(2, "Le nom doit contenir au moins 2 caractères"),
   email: z.email("Email invalide"),
   password: z
     .string()
@@ -29,12 +26,11 @@ const schema = z.object({
 });
 type Props = {};
 
-export default function SignUpForm({}: Props) {
+export default function SignInForm({}: Props) {
   const router = useRouter();
   const form = useForm<z.infer<typeof schema>>({
     resolver: zodResolver(schema),
     defaultValues: {
-      name: "",
       email: "",
       password: "",
     },
@@ -42,31 +38,30 @@ export default function SignUpForm({}: Props) {
   });
   const onSubmit: SubmitHandler<z.infer<typeof schema>> = async (data) => {
     console.log(data);
-    await signUp.email(
+    await signIn.email(
       {
-        name: data.name,
         email: data.email,
         password: data.password,
       },
       {
         onRequest: () => {
-          toast.loading("Signing up...", {
-            id: "signing-up",
+          toast.loading("Signing in...", {
+            id: "signing-in",
           });
         },
         onResponse: (response) => {
           console.log("le serveur a repondu", response);
         },
         onSuccess: () => {
-          toast.success("Sign up successful", {
-            id: "signing-up",
+          toast.success("Sign in successful", {
+            id: "signing-in",
           });
           router.push("/auth");
         },
         onError: (error) => {
           console.log(error); 
-          toast.error("Sign up failed:", {
-            id: "signing-up",
+          toast.error("Sign in failed:", {
+            id: "signing-in",
           });
         },
       }
@@ -80,24 +75,8 @@ export default function SignUpForm({}: Props) {
       >
         <FieldGroup>
           <FieldSet>
-            <FieldLegend>Sign Up</FieldLegend>
+            <FieldLegend>Sign In</FieldLegend>
             <FieldGroup className="mt-4">
-              <Field orientation={"responsive"}>
-                <FieldLabel htmlFor="name">Name</FieldLabel>
-                <Controller
-                  name="name"
-                  control={form.control}
-                  render={({ field }) => (
-                    <Input
-                      id="name"
-                      type="text"
-                      placeholder="John Doe"
-                      {...field}
-                    />
-                  )}
-                />
-                <FieldError errors={[form.formState.errors.name]} />
-              </Field>
               <Field orientation={"responsive"}>
                 <FieldLabel htmlFor="email">Email</FieldLabel>
                 <Controller
@@ -127,15 +106,15 @@ export default function SignUpForm({}: Props) {
               </Field>
             </FieldGroup>
             <p className="text-sm text-muted-foreground">
-              Already have an account? {" "} 
-              <Link href="/auth/signin" className="text-blue-600 underline-offset-4 hover:underline">
-                Sign in
+              Don't have an account? {" "} 
+              <Link href="/auth/signup" className="text-blue-600 underline-offset-4 hover:underline">
+                Sign up
               </Link>
             </p>
           </FieldSet>
           <Field orientation="vertical" className="gap-2">
             <Button type="submit" className="w-full">
-              Sign Up
+              Sign In
             </Button>
             <Button variant="outline" className="w-full" type="button">
               Login with Google

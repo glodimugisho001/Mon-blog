@@ -6,19 +6,23 @@ import { getUser } from "@/lib/auth-server";
 import {
   DropdownMenu,
   DropdownMenuContent,
+  DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "./ui/dropdown-menu";
 import { Avatar, AvatarFallback } from "./ui/avatar";
 import MobileMenu from "./MobileMenu";
+import { LogOut } from "lucide-react";
+import { auth } from "@/lib/auth";
+import { headers } from "next/headers";
+import { redirect } from "next/navigation";
 
 const links = [
   { url: "/", label: "Home" },
   { url: "/blog", label: "Blog" },
 ];
 export default function Navbar() {
-  //  const [isOpen, setIsOpen] = useState(false)
   return (
     <header className="bg-white shadow-md sticky top-0 z-50">
       <div className="container mx-auto flex justify-between items-center py-4 px-6 md:px-12 border-b-[2px] border-gray-200 md:border-none  ">
@@ -81,9 +85,23 @@ export const AuthButton = async () => {
       <DropdownMenuContent>
         <DropdownMenuLabel>My Account</DropdownMenuLabel>
         <DropdownMenuSeparator />
-        <DropdownMenuLabel>Settings</DropdownMenuLabel>
-        <DropdownMenuSeparator />
-        <DropdownMenuLabel>Logout</DropdownMenuLabel>
+        <DropdownMenuItem asChild>
+          <form action="">
+            <button
+              className="flex items-center gap-2"
+              formAction={ async () => {
+                "use server"
+                await auth.api.signOut({
+                  headers: await headers(),
+                })
+                redirect("/auth/signin")
+              }}
+            >
+              <LogOut className="size-3.5"/>
+              Logout
+            </button>
+          </form>
+        </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
   );
