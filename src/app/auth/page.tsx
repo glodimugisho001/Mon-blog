@@ -1,5 +1,32 @@
-const AuthPage = () => {
-  return <div>user connected</div>;
+import { getUser } from "@/lib/auth-server";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import UnauthorizedPage from "./unauthorized";
+
+const AuthPage = async () => {
+  const user = await getUser();
+
+  if(!user) {
+    return <UnauthorizedPage />
+  }
+  return (
+    <Card className="">
+      <CardHeader>
+        <CardTitle>User Profile</CardTitle>
+      </CardHeader>
+      <CardContent>
+        <div className="grid gap-2">
+          <div className="flex flex-col">
+            <span className="text-sm font-medium">Name</span>
+            <span className="text-sm"> {user?.name} </span>
+          </div>
+          <div className="flex flex-col">
+            <span className="text-sm font-medium">Email</span>
+            <span className="text-sm"> {user?.email} </span>
+          </div>
+        </div>
+      </CardContent>
+    </Card>
+  );
 };
 
 export default AuthPage;

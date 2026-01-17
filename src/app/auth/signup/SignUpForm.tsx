@@ -23,7 +23,7 @@ const schema = z.object({
   email: z.email("Email invalide"),
   password: z
     .string()
-    .min(6, "Le mot de passe doit contenir au moins 6 caractères"),
+    .min(6, "Le mot de passe doit contenir au moins 8 caractères"),
 });
 type Props = {};
 
@@ -71,83 +71,81 @@ export default function SignUpForm({}: Props) {
     );
   };
   return (
-    <div className="flex justify-center items-center h-screen">
-      <div className="w-full max-w-sm">
-        <form
-          onSubmit={form.handleSubmit(onSubmit)}
-          className="p-6 border border-gray-300 rounded-lg"
-        >
-          <FieldGroup>
-            <FieldSet>
-              <FieldLegend>Sign up to your account</FieldLegend>
-              <FieldDescription>
-                Enter your email below to sign up to your account
-              </FieldDescription>
-              <FieldGroup>
-                <Field orientation={"responsive"}>
-                  <FieldLabel htmlFor="name">Name</FieldLabel>
-                  <Controller
-                    name="name"
-                    control={form.control}
-                    render={({ field }) => (
-                      <Input
-                        id="name"
-                        type="text"
-                        placeholder="John Doe"
-                        {...field}
-                      />
-                    )}
-                  />
-                  <FieldError errors={[form.formState.errors.name]} />
-                </Field>
-                <Field orientation={"responsive"}>
-                  <FieldLabel htmlFor="email">Email</FieldLabel>
-                  <Controller
-                    name="email"
-                    control={form.control}
-                    render={({ field }) => (
-                      <Input
-                        id="email"
-                        type="email"
-                        placeholder="m@example.com"
-                        {...field}
-                      />
-                    )}
-                  />
-                  <FieldError errors={[form.formState.errors.email]} />
-                </Field>
-                <Field>
-                  <FieldLabel htmlFor="password">Password</FieldLabel>
-                  <Controller
-                    name="password"
-                    control={form.control}
-                    render={({ field }) => (
-                      <Input id="password" type="password" {...field} />
-                    )}
-                  />
-                  <FieldError errors={[form.formState.errors.password]} />
-                  <FieldDescription>
-                    <a
-                      href="#"
-                      className="text-sm underline-offset-4 hover:underline"
-                    >
-                      Forgot your password?
-                    </a>
-                  </FieldDescription>
-                </Field>
-              </FieldGroup>
-            </FieldSet>
-            <Field orientation="vertical" className="gap-2">
-              <Button type="submit" className="w-full">
-                Sign Up
-              </Button>
-              <Button variant="outline" className="w-full" type="button">
-                Login with Google
-              </Button>
-            </Field>
-          </FieldGroup>
-        </form>
-      </div>
+    <div className="w-full max-w-sm">
+      <form
+        onSubmit={form.handleSubmit(onSubmit)}
+        className="p-6 border border-gray-300 rounded-lg"
+      >
+        <FieldGroup>
+          <FieldSet>
+            <FieldLegend>Sign up to your account</FieldLegend>
+            <FieldDescription>
+              Enter your email below to sign up to your account
+            </FieldDescription>
+            <FieldGroup>
+              <Field orientation={"responsive"}>
+                <FieldLabel htmlFor="name">Name</FieldLabel>
+                <Controller
+                  name="name"
+                  control={form.control}
+                  render={({ field }) => (
+                    <Input
+                      id="name"
+                      type="text"
+                      placeholder="John Doe"
+                      {...field}
+                    />
+                  )}
+                />
+                <FieldError errors={[form.formState.errors.name]} />
+              </Field>
+              <Field orientation={"responsive"}>
+                <FieldLabel htmlFor="email">Email</FieldLabel>
+                <Controller
+                  name="email"
+                  control={form.control}
+                  render={({ field }) => (
+                    <Input
+                      id="email"
+                      type="email"
+                      placeholder="m@example.com"
+                      {...field}
+                    />
+                  )}
+                />
+                <FieldError errors={[form.formState.errors.email]} />
+              </Field>
+              <Field>
+                <FieldLabel htmlFor="password">Password</FieldLabel>
+                <Controller
+                  name="password"
+                  control={form.control}
+                  render={({ field }) => (
+                    <Input id="password" type="password" {...field} />
+                  )}
+                />
+                <FieldError errors={[form.formState.errors.password]} />
+                <FieldDescription>
+                  <a
+                    href="#"
+                    className="text-sm underline-offset-4 hover:underline"
+                  >
+                    Forgot your password?
+                  </a>
+                </FieldDescription>
+              </Field>
+            </FieldGroup>
+          </FieldSet>
+          <Field orientation="vertical" className="gap-2">
+            <Button type="submit" className="w-full">
+              Sign Up
+            </Button>
+            <Button variant="outline" className="w-full" type="button">
+              Login with Google
+            </Button>
+          </Field>
+        </FieldGroup>
+      </form>
     </div>
   );
 }
