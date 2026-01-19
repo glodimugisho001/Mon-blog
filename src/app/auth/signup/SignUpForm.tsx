@@ -3,7 +3,6 @@
 import { Button } from "@/components/ui/button";
 import {
   Field,
-  FieldDescription,
   FieldError,
   FieldGroup,
   FieldLabel,
@@ -18,7 +17,6 @@ import { signUp } from "@/lib/auth-client";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import Link from "next/link";
-
 
 const schema = z.object({
   name: z.string().min(2, "Le nom doit contenir au moins 2 caractères"),
@@ -62,14 +60,15 @@ export default function SignUpForm({}: Props) {
             id: "signing-up",
           });
           router.push("/auth");
+          router.refresh(); // Force Next.js to refetch Server Components
         },
         onError: (error) => {
-          console.log(error); 
+          console.log(error);
           toast.error("Sign up failed:", {
             id: "signing-up",
           });
         },
-      }
+      },
     );
   };
   return (
@@ -127,8 +126,11 @@ export default function SignUpForm({}: Props) {
               </Field>
             </FieldGroup>
             <p className="text-sm text-muted-foreground">
-              Already have an account? {" "} 
-              <Link href="/auth/signin" className="text-blue-600 underline-offset-4 hover:underline">
+              Already have an account?{" "}
+              <Link
+                href="/auth/signin"
+                className="text-blue-600 underline-offset-4 hover:underline"
+              >
                 Sign in
               </Link>
             </p>

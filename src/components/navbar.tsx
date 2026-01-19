@@ -13,10 +13,11 @@ import {
 } from "./ui/dropdown-menu";
 import { Avatar, AvatarFallback } from "./ui/avatar";
 import MobileMenu from "./MobileMenu";
-import { LogOut } from "lucide-react";
+import { LogOut, User } from "lucide-react";
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
+import { revalidatePath } from "next/cache";
 
 const links = [
   { url: "/", label: "Home" },
@@ -76,7 +77,7 @@ export const AuthButton = async () => {
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button variant="outline" size="sm">
-          <Avatar>
+          <Avatar className="size-6">
             <AvatarFallback>{user.email[0].toUpperCase()}</AvatarFallback>
           </Avatar>
           <p className="text-sm">{user.name}</p>
@@ -86,6 +87,12 @@ export const AuthButton = async () => {
         <DropdownMenuLabel>My Account</DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuItem asChild>
+          <Link href="/auth">
+            <User className="size-3.5"/>
+            Dashboard
+          </Link>
+        </DropdownMenuItem>
+        <DropdownMenuItem asChild>
           <form action="">
             <button
               className="flex items-center gap-2"
@@ -94,6 +101,7 @@ export const AuthButton = async () => {
                 await auth.api.signOut({
                   headers: await headers(),
                 })
+                revalidatePath("/auth/signin")
                 redirect("/auth/signin")
               }}
             >

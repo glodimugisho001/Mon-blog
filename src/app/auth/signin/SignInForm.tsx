@@ -57,14 +57,15 @@ export default function SignInForm({}: Props) {
             id: "signing-in",
           });
           router.push("/auth");
+          router.refresh(); // Force Next.js to refetch Server Components
         },
         onError: (error) => {
-          console.log(error); 
+          console.log(error);
           toast.error("Sign in failed:", {
             id: "signing-in",
           });
         },
-      }
+      },
     );
   };
   return (
@@ -106,8 +107,11 @@ export default function SignInForm({}: Props) {
               </Field>
             </FieldGroup>
             <p className="text-sm text-muted-foreground">
-              Don't have an account? {" "} 
-              <Link href="/auth/signup" className="text-blue-600 underline-offset-4 hover:underline">
+              Don't have an account?{" "}
+              <Link
+                href="/auth/signup"
+                className="text-blue-600 underline-offset-4 hover:underline"
+              >
                 Sign up
               </Link>
             </p>
