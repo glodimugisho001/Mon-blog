@@ -84,6 +84,7 @@ export default function SignUpForm({}: Props) {
 
   return (
     <div className="w-full max-w-sm">
+      {/* {blog-react-484818} */}
       <form
         onSubmit={form.handleSubmit(onSubmit)}
         className="p-6 border border-gray-300 rounded-lg w-full flex flex-col gap-4"
@@ -152,9 +153,14 @@ export default function SignUpForm({}: Props) {
                 <Github />
                 Sign Up with github
               </Button>
-              {/* <Button variant="outline" className="w-full" type="button">
+              <Button
+                onClick={() => signUpWithProvider("google")}
+                variant="outline"
+                className="w-full"
+                type="button"
+              >
                 Sign Up with google
-              </Button> */}
+              </Button>
             </div>
           </Field>
         </FieldGroup>

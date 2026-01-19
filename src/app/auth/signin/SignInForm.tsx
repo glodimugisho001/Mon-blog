@@ -133,9 +133,14 @@ export default function SignInForm({}: Props) {
                 <Github />
                 Sign In with github
               </Button>
-              {/* <Button variant="outline" className="w-full" type="button">
-                Sign Up with google
-              </Button> */}
+              <Button
+                onClick={() => signInWithProvider("google")}
+                variant="outline"
+                className="w-full"
+                type="button"
+              >
+                Sign In with google
+              </Button>
             </div>
           </Field>
 
