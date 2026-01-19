@@ -11,7 +11,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "./ui/dropdown-menu";
-import { Avatar, AvatarFallback } from "./ui/avatar";
+import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import MobileMenu from "./MobileMenu";
 import { LogOut, User } from "lucide-react";
 import { auth } from "@/lib/auth";
@@ -78,7 +78,12 @@ export const AuthButton = async () => {
       <DropdownMenuTrigger asChild>
         <Button variant="outline" size="sm">
           <Avatar className="size-6">
-            <AvatarFallback>{user.email[0].toUpperCase()}</AvatarFallback>
+            {user.image? (
+              <AvatarImage src={user.image}/>
+            )
+            : (
+              <AvatarFallback>{user.email[0].toUpperCase()}</AvatarFallback>
+            )}
           </Avatar>
           <p className="text-sm">{user.name}</p>
         </Button>

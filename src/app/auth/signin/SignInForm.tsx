@@ -17,6 +17,9 @@ import { signIn } from "@/lib/auth-client";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import Link from "next/link";
+import { Github } from "lucide-react";
+
+type ProviderEnum = Parameters<typeof signIn.social>[0]["provider"];
 
 const schema = z.object({
   email: z.email("Email invalide"),
@@ -68,11 +71,19 @@ export default function SignInForm({}: Props) {
       },
     );
   };
+
+  const signInWithProvider = async (provider: ProviderEnum) => {
+    await signIn.social({
+      provider: provider,
+      callbackURL: "/auth", // Redirige vers /auth après l'authentification
+    });
+  };
+
   return (
     <div className="w-full max-w-sm">
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="p-6 border border-gray-300 rounded-lg"
+        className="p-6 border border-gray-300 rounded-lg w-full flex flex-col gap-4"
       >
         <FieldGroup>
           <FieldSet>
@@ -106,25 +117,38 @@ export default function SignInForm({}: Props) {
                 <FieldError errors={[form.formState.errors.password]} />
               </Field>
             </FieldGroup>
-            <p className="text-sm text-muted-foreground">
-              Don't have an account?{" "}
-              <Link
-                href="/auth/signup"
-                className="text-blue-600 underline-offset-4 hover:underline"
-              >
-                Sign up
-              </Link>
-            </p>
           </FieldSet>
-          <Field orientation="vertical" className="gap-2">
+          <Field orientation="vertical" className="gap-4">
             <Button type="submit" className="w-full">
               Sign In
             </Button>
-            <Button variant="outline" className="w-full" type="button">
-              Login with Google
-            </Button>
+            <p className="text-center text-muted-foreground">or</p>
+            <div className="flex flex-col gap-2 items-center justify-center">
+              <Button
+                onClick={() => signInWithProvider("github")}
+                variant="outline"
+                className="w-full"
+                type="button"
+              >
+                <Github />
+                Sign In with github
+              </Button>
+              {/* <Button variant="outline" className="w-full" type="button">
+                Sign Up with google
+              </Button> */}
+            </div>
           </Field>
+
         </FieldGroup>
+        <p className="text-sm text-muted-foreground">
+          Don't have an account?{" "}
+          <Link
+            href="/auth/signup"
+            className="text-blue-600 underline-offset-4 hover:underline"
+          >
+            Sign up
+          </Link>
+        </p>
       </form>
     </div>
   );

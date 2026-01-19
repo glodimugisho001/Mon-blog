@@ -13,10 +13,13 @@ import { Input } from "@/components/ui/input";
 import { useForm, SubmitHandler, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { signUp } from "@/lib/auth-client";
+import { signIn, signUp } from "@/lib/auth-client";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import Link from "next/link";
+import { Github } from "lucide-react";
+
+type ProviderEnum = Parameters<typeof signIn.social>[0]["provider"];
 
 const schema = z.object({
   name: z.string().min(2, "Le nom doit contenir au moins 2 caractères"),
@@ -71,11 +74,19 @@ export default function SignUpForm({}: Props) {
       },
     );
   };
+
+  const signUpWithProvider = async (provider: ProviderEnum) => {
+    await signIn.social({
+      provider: provider,
+      callbackURL: "/auth", // Redirige vers /auth après l'authentification
+    });
+  };
+
   return (
     <div className="w-full max-w-sm">
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="p-6 border border-gray-300 rounded-lg"
+        className="p-6 border border-gray-300 rounded-lg w-full flex flex-col gap-4"
       >
         <FieldGroup>
           <FieldSet>
@@ -125,25 +136,37 @@ export default function SignUpForm({}: Props) {
                 <FieldError errors={[form.formState.errors.password]} />
               </Field>
             </FieldGroup>
-            <p className="text-sm text-muted-foreground">
-              Already have an account?{" "}
-              <Link
-                href="/auth/signin"
-                className="text-blue-600 underline-offset-4 hover:underline"
-              >
-                Sign in
-              </Link>
-            </p>
           </FieldSet>
-          <Field orientation="vertical" className="gap-2">
+          <Field orientation="vertical" className="gap-4">
             <Button type="submit" className="w-full">
               Sign Up
             </Button>
-            <Button variant="outline" className="w-full" type="button">
-              Login with Google
-            </Button>
+            <p className="text-center text-muted-foreground">or</p>
+            <div className="flex flex-col gap-2 items-center justify-center">
+              <Button
+                onClick={() => signUpWithProvider("github")}
+                variant="outline"
+                className="w-full"
+                type="button"
+              >
+                <Github />
+                Sign Up with github
+              </Button>
+              {/* <Button variant="outline" className="w-full" type="button">
+                Sign Up with google
+              </Button> */}
+            </div>
           </Field>
         </FieldGroup>
+        <p className="text-sm text-muted-foreground">
+          Already have an account?{" "}
+          <Link
+            href="/auth/signin"
+            className="text-blue-600 underline-offset-4 hover:underline"
+          >
+            Sign in
+          </Link>
+        </p>
       </form>
     </div>
   );
