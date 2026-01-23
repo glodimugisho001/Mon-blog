@@ -1,6 +1,7 @@
 import { getUser } from "@/lib/auth-server";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import UnauthorizedPage from "./unauthorized";
+import { Check } from "lucide-react";
 
 const AuthPage = async () => {
   const user = await getUser();
@@ -21,9 +22,12 @@ const AuthPage = async () => {
           </div>
           <div className="flex flex-col">
             <span className="text-sm font-medium">Email</span>
-            <span className="text-sm"> {user?.email} </span>
+            <div className="flex items-center gap-2">
+              <span className="text-sm"> {user?.email} </span>
+              {user.emailVerified ? <Check className="text-green-500 size-4"/>: null}
+            </div>
           </div>
-        </div>
+        </div>  
       </CardContent>
     </Card>
   );
