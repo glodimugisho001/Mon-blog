@@ -4,10 +4,7 @@ import { Button } from "@/components/ui/button";
 import {
   Field,
   FieldError,
-  FieldGroup,
   FieldLabel,
-  FieldLegend,
-  FieldSet,
 } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import { useForm, SubmitHandler, Controller } from "react-hook-form";
@@ -15,7 +12,6 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { authClient } from "@/lib/auth-client";
 import { useRouter } from "next/navigation";
-import { toast } from "sonner";
 
 const schema = z.object({
   name: z.string(),

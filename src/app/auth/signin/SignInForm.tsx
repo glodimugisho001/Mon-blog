@@ -106,7 +106,10 @@ export default function SignInForm({}: Props) {
                 <FieldError errors={[form.formState.errors.email]} />
               </Field>
               <Field>
-                <FieldLabel htmlFor="password">Password</FieldLabel>
+                <div className="flex justify-between items-center">
+                  <FieldLabel htmlFor="password">Password</FieldLabel>
+                  <Link href="/auth/forget-password" className="text-indigo-600 text-sm  underline-offset-4 hover:underline">Forgot password?</Link>
+                </div>
                 <Controller
                   name="password"
                   control={form.control}
@@ -143,7 +146,6 @@ export default function SignInForm({}: Props) {
               </Button>
             </div>
           </Field>
-
         </FieldGroup>
         <p className="text-sm text-muted-foreground">
           Don't have an account?{" "}
