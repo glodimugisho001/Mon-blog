@@ -1,8 +1,11 @@
-import React from 'react'
+
+import EditAuthForm from './edit-auth-form'
 
 const EditAuthPage = () => {
   return (
-    <div>EditAuthPage</div>
+    <div className="flex justify-center">
+      <EditAuthForm />
+    </div>
   )
 }
 
