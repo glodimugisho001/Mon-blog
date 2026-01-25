@@ -28,9 +28,8 @@ const schema = z.object({
     .string()
     .min(6, "Le mot de passe doit contenir au moins 8 caractères"),
 });
-type Props = {};
 
-export default function SignUpForm({}: Props) {
+export default function SignUpForm() {
   const router = useRouter();
   const form = useForm<z.infer<typeof schema>>({
     resolver: zodResolver(schema),

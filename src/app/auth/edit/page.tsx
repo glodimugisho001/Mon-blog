@@ -3,6 +3,8 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import EditAuthForm from "./edit-auth-form";
 import UnauthorizedPage from "../unauthorized";
 
+export const dynamic = "force-dynamic";
+
 const AuthPage = async () => {
   const user = await getUser();
 

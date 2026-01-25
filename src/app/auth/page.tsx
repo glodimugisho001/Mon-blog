@@ -9,6 +9,7 @@ import { headers } from "next/headers";
 import { redirect } from "next/navigation";
 import UnauthorizedPage from "./unauthorized";
 
+export const dynamic = "force-dynamic";
 
 const AuthPage = async () => {
   const user = await getUser();

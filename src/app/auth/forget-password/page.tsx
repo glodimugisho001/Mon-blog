@@ -18,7 +18,7 @@ const ForgetPasswordPage = () => {
   const onSubmit = async (Formdata: FormData) => {
     const email = Formdata.get("email");
     try {
-      const { data, error } = await authClient.requestPasswordReset({
+      await authClient.requestPasswordReset({
         email: email as string,
         redirectTo: "/auth/reset-password",
       });

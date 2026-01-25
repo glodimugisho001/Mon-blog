@@ -60,6 +60,8 @@ export default function Navbar() {
   );
 }
 
+export const dynamic = "force-dynamic";
+
 export const AuthButton = async () => {
   const user = await getUser();
 
