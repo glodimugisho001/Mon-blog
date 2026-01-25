@@ -11,9 +11,10 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { authClient } from "@/lib/auth-client";
-import { toast } from "sonner";
+import { useRouter } from "next/navigation";
 
 const ForgetPasswordPage = () => {
+  const router = useRouter();
   const onSubmit = async (Formdata: FormData) => {
     const email = Formdata.get("email");
     try {
@@ -21,8 +22,7 @@ const ForgetPasswordPage = () => {
         email: email as string,
         redirectTo: "/auth/reset-password",
       });
-      toast("check your email for reset password by click on the link", {duration: 5000, id: "reset-password"});
-      console.log(data, error);
+      router.push("/auth/verify-email");
     } catch (error) {
       console.log(error);
     }
