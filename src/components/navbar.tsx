@@ -98,7 +98,7 @@ export const AuthButton = async () => {
           </Link>
         </DropdownMenuItem>
         <DropdownMenuItem asChild>
-          <form action="">
+          <form>
             <button
               className="flex items-center gap-2"
               formAction={ async () => {
