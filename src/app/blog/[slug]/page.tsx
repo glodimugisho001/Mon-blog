@@ -43,8 +43,8 @@ export default async function page({ params }: Props) {
           {postFound?.title ?? "Aucun titre trouvé"}
         </h1>
         <div className="flex items-center gap-4 text-neutral-500 text-sm">
-          <span className="text-neutral-500 font-medium text-[14px] flex items-center gap-2">
-            {postFound?.createdAt.toLocaleDateString("fr-Fr", {
+        <span className="text-neutral-500 font-medium text-[14px] flex items-center gap-2">
+          {postFound?.createdAt.toLocaleDateString("fr-FR", {
               day: "numeric",
               month: "long",
               year: "numeric",
@@ -61,7 +61,7 @@ export default async function page({ params }: Props) {
           width={250}
           height={150}
           alt={postFound?.title ?? "Aucun titre trouvé"}
-          className="W-full rounded-md my-6 mx-auto"
+          className="w-full rounded-md my-6 mx-auto"
         />
         <article className="prose prose-lg max-w-3xl mx-auto text-neutral-800 text-justify md:text-[18px]">
           <p>{postFound?.content}</p>

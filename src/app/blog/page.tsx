@@ -4,7 +4,11 @@ import Posts from "@/components/Posts";
 import { prisma } from "@/lib/prisma";
 import { Suspense } from "react";
 export default async function BlogHome() {
-  const posts = await prisma.post.findMany();
+  const posts = await prisma.post.findMany({
+    orderBy: {
+      createdAt: "desc",
+    },
+  });
   return (
     <div className="">
       <section className="text-center mt-6">

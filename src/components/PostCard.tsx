@@ -44,7 +44,7 @@ export default function PostCard({ post }: Props) {
               width={600}
               height={400}
               alt={post.title}
-              className="W-full rounded-sm"
+              className="w-full rounded-sm"
             />
           )}
         </ItemHeader>
