@@ -3,6 +3,9 @@ import Hero from "../components/Hero";
 import LastPosts from "../components/LastPosts";
 import WhyBlog from "../components/WyBlog";
 
+// Force le rendu dynamique pour éviter l'exécution pendant le build
+export const dynamic = 'force-dynamic';
+
 export default async function page() {
   return (
     <div className="flex flex-col gap-24 pb-24">

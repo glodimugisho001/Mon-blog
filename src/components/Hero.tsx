@@ -7,23 +7,9 @@ import { motion } from "framer-motion";
 
 export default function Hero() {
   return (
-    <section className="relative -mx-6 overflow-hidden bg-gradient-to-br from-blue-600 via-indigo-600 to-pink-500 text-white">
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(255,255,255,0.25),_transparent_55%)]" />
+    <section className="relative -mx-6 overflow-hidden bg-linear-to-br from-blue-600 via-indigo-600 to-pink-500 text-white">
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.25),transparent_55%)]" />
 
-      {/* Animated background blobs */}
-      <motion.div
-        className="absolute -bottom-10 -left-20 h-72 w-72 rounded-full bg-yellow-200/30 blur-3xl"
-        animate={{
-          scale: [1, 1.2, 1],
-          x: [0, 20, 0],
-          y: [0, -20, 0],
-        }}
-        transition={{
-          duration: 8,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-      />
       <motion.div
         className="absolute -top-16 -right-16 h-80 w-80 rounded-full bg-pink-400/30 blur-3xl"
         animate={{
@@ -107,7 +93,7 @@ export default function Hero() {
             >
               <Button
                 variant="outline"
-                className="border-white/40 text-white hover:bg-white/10 transition-all duration-300 backdrop-blur-sm"
+                className="border-white/80 text-black hover:bg-white/10 transition-all duration-300 backdrop-blur-sm"
               >
                 Rejoindre la communauté
               </Button>
