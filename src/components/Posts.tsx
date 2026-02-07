@@ -9,7 +9,7 @@ export default function Posts({ posts }: { posts: Post[] }) {
   const params = useSearchParams();
   const paramsFound = params.get("title")?.toLowerCase() || "";
   const fitleredPosts = posts.filter((post) =>
-    post.title.toLowerCase().includes(paramsFound)
+    post.title.toLowerCase().includes(paramsFound),
   );
 
   return (
@@ -23,7 +23,9 @@ export default function Posts({ posts }: { posts: Post[] }) {
           </p>
         </div>
       ) : (
-        fitleredPosts.map((post) => <PostCard post={post} key={post.slug} />)
+        fitleredPosts.map((post, index) => (
+          <PostCard post={post} index={index} key={post.slug} />
+        ))
       )}
     </div>
   );
