@@ -36,7 +36,10 @@ export default function PostCard({ post }: Props) {
 
   return (
     <div className="flex w-full max-w-xl flex-col gap-6">
-      <Item variant="outline">
+      <Item
+        variant="outline"
+        className="overflow-hidden rounded-2xl border-border/60 bg-card/80 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
+      >
         <ItemHeader>
           {post.image && (
             <Image
@@ -44,19 +47,39 @@ export default function PostCard({ post }: Props) {
               width={600}
               height={400}
               alt={post.title}
-              className="w-full rounded-sm"
+              className="h-48 w-full rounded-none object-cover"
             />
           )}
         </ItemHeader>
-        <ItemContent>
-          <ItemTitle>{post.title}</ItemTitle>
-          <ItemDescription>{post.excerpt}</ItemDescription>
+        <ItemContent className="gap-3">
+          <ItemTitle className="text-lg md:text-xl font-semibold">
+            {post.title}
+          </ItemTitle>
+          <ItemDescription className="text-sm md:text-base">
+            {post.excerpt}
+          </ItemDescription>
+          {post.tags?.length ? (
+            <div className="flex flex-wrap gap-2 text-xs">
+              {post.tags.slice(0, 3).map((tag) => (
+                <span
+                  key={tag}
+                  className="rounded-full bg-muted px-3 py-1 font-medium text-muted-foreground"
+                >
+                  {tag}
+                </span>
+              ))}
+            </div>
+          ) : null}
         </ItemContent>
-        <ItemFooter>
+        <ItemFooter className="items-center">
           <Link
             href={`/blog/${post.slug}`}
             onClick={() => handleNavigate(post.slug)}
-            className={buttonVariants({ size: "lg", variant: "outline" })}
+            className={buttonVariants({
+              size: "lg",
+              variant: "outline",
+              className: "group gap-2"
+            })}
           >
             {loadingSlug === post.slug ? (
               <p className="flex gap-2 items-center">
@@ -66,7 +89,7 @@ export default function PostCard({ post }: Props) {
             ) : (
               <p className="flex gap-2 items-center">
                 <span>Lire plus </span>
-                <ArrowRight />
+                <ArrowRight className="transition-transform group-hover:translate-x-1" />
               </p>
             )}
           </Link>
