@@ -9,9 +9,9 @@ export default function WhyBlog() {
   return (
     <section
       aria-labelledby="why-blog-title"
-      className="max-w-[1100px] mx-auto py-10"
+      className="max-w-[1100px] mx-auto px-6 py-10"
     >
-      <div className="border border-gray-200 dark:border-gray-700 rounded-xl p-6 md:p-8 bg-white dark:bg-gray-900 shadow-sm">
+      <div className="border border-gray-200/70 dark:border-gray-700 rounded-2xl p-6 md:p-10 bg-white/90 dark:bg-gray-900 shadow-md">
         <div className="mb-4">
           <div
             className="inline-block px-3 py-1 border-b-2 border-yellow-400 font-semibold text-sm rounded-sm bg-yellow-50 dark:bg-yellow-950/20"
@@ -21,11 +21,11 @@ export default function WhyBlog() {
           </div>
         </div>
 
-        <div className="flex flex-col md:flex-row md:items-center gap-6">
+        <div className="flex flex-col md:flex-row md:items-center gap-8">
           <div className="flex-1">
             <h3
               id="why-blog-title"
-              className="text-2xl md:text-3xl font-extrabold leading-tight"
+              className="text-2xl md:text-4xl font-extrabold leading-tight"
             >
               Apprenez le frontend moderne avec des exemples concrets
             </h3>
@@ -34,6 +34,22 @@ export default function WhyBlog() {
               Sur ce blog, je partage des sujets réel et des exemples concrets
               pour apprendre le frontend moderne avec React et Next.js.
             </p>
+
+            <ul className="mt-6 grid gap-3 text-sm text-gray-700 dark:text-gray-300">
+              {[
+                "Des explications claires pour passer du concept au code.",
+                "Des mini-projets pour pratiquer rapidement.",
+                "Des astuces UX/UI pour livrer des interfaces soignées.",
+              ].map((item) => (
+                <li
+                  key={item}
+                  className="flex items-start gap-3 rounded-lg border border-gray-100 dark:border-gray-800 bg-gray-50/70 dark:bg-gray-800/40 p-3"
+                >
+                  <span className="mt-1 h-2 w-2 rounded-full bg-yellow-400" />
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
 
             <div className="mt-6">
               <Link href="/blog">
@@ -44,8 +60,8 @@ export default function WhyBlog() {
             </div>
           </div>
 
-          <div className="w-full md:w-72 flex-shrink-0">
-            <blockquote className="relative bg-gradient-to-br from-gray-50 to-white dark:from-gray-800 dark:to-gray-900 border border-gray-100 dark:border-gray-800 p-4 rounded-lg shadow-sm">
+          <div className="w-full md:w-80 flex-shrink-0">
+            <blockquote className="relative bg-gradient-to-br from-gray-50 to-white dark:from-gray-800 dark:to-gray-900 border border-gray-100 dark:border-gray-800 p-5 rounded-xl shadow-sm">
               <svg
                 className="absolute -top-3 -left-3 w-8 h-8 text-yellow-300"
                 viewBox="0 0 24 24"

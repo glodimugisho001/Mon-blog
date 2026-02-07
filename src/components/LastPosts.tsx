@@ -11,7 +11,7 @@ export default async function LastPosts() {
   })
   
   return (
-    <div className="grid grid-cols-[repeat(auto-fit,minmax(250px,1fr))] gap-4 mx-auto max-w-[1200px]">
+    <div className="grid grid-cols-[repeat(auto-fit,minmax(260px,1fr))] gap-6 mx-auto max-w-[1200px]">
       {lastPosts.map((post) => (
         <PostCard post={post} key={post.slug} />
       ))}
