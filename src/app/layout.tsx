@@ -4,6 +4,7 @@ import Navbar from "../components/navbar";
 import { poppins } from "@/lib/font";
 import Footer from "@/components/Footer";
 import { Toaster } from "@/components/ui/sonner";
+import { Analytics } from "@vercel/analytics/next"
 
 export const metadata: Metadata = {
   title: "Mini blog",
@@ -22,6 +23,7 @@ export default function RootLayout({
         <main className="px-6 md:px-0">{children}</main>
         <Footer/>
         <Toaster position="top-center" richColors/>
+        <Analytics />
       </body>
     </html>
   );
