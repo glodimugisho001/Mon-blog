@@ -1,0 +1,54 @@
+"use client";
+
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+} from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { authClient } from "@/lib/auth-client";
+import { useRouter } from "next/navigation";
+
+const ForgetPasswordForm = () => {
+  const router = useRouter();
+  const onSubmit = async (Formdata: FormData) => {
+    const email = Formdata.get("email");
+    try {
+      await authClient.requestPasswordReset({
+        email: email as string,
+        redirectTo: "/auth/reset-password",
+      });
+      router.push("/auth/verify-email");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  return (
+    <Card className="max-w-sm w-full self-start mt-10">
+      <CardHeader>
+        <CardTitle>Reset Password</CardTitle>
+        <CardDescription>
+          Enter your email address and we'll send you a link to reset your
+          password.
+        </CardDescription>
+      </CardHeader>
+      <CardContent>
+        <form action={onSubmit} className="space-y-4">
+          <div className="space-y-2">
+            <Label htmlFor="email">Email</Label>
+            <Input type="email" name="email" id="email" />
+          </div>
+          <Button type="submit" className="w-full">
+            Reset Password
+          </Button>
+        </form>
+      </CardContent>
+    </Card>
+  );
+};
+
+export default ForgetPasswordForm;

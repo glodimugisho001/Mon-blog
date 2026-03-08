@@ -14,7 +14,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
 
-const ResetPasswordPage = () => {
+const ResetPasswordForm = () => {
   const token = useSearchParams().get("token");
   const router = useRouter();
   const onSubmit = async (Formdata: FormData) => {
@@ -63,4 +63,4 @@ const ResetPasswordPage = () => {
   );
 };
 
-export default ResetPasswordPage;
+export default ResetPasswordForm;
